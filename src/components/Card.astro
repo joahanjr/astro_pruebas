@@ -2,7 +2,7 @@
 interface Props {
   title: string;
   time: string;
-  tags: string;
+  tags: string[];
 }
 
 const { title, time, tags } = Astro.props;
@@ -17,28 +17,29 @@ const { title, time, tags } = Astro.props;
   class="rounded-lg border border-gray-100 bg-white p-4 shadow-sm transition hover:shadow-lg dark:border-gray-800 dark:bg-gray-900 dark:shadow-gray-700/25 sm:p-6"
 >
   <span>
-    <a href="#">
-      <h3 class="mt-0.5 text-lg font-medium text-gray-900 dark:text-white">
-        {title}
-      </h3>
-    </a>
-
+    <h3 class="mt-0.5 text-lg font-medium text-gray-900 dark:text-white">
+      {title}
+    </h3>
     <p
       class="mt-2 line-clamp-3 text-sm/relaxed text-gray-500 dark:text-gray-400"
     >
       {time}
     </p>
-
-    <a
-      href="#"
-      class="group mt-4 inline-flex items-center gap-1 text-sm font-medium text-blue-600"
-    >
-      {tags}
-      <span
-        aria-hidden="true"
-        class="block transition-all group-hover:ms-0.5 rtl:rotate-180"
+    <div>
+      <p
+        class="group mt-4 inline-flex items-center gap-1 text-sm font-medium text-blue-600"
       >
-      </span>
-    </a>
+        {
+          tags.map((tag) => (
+            <span
+              aria-hidden="true"
+              class="block transition-all group-hover:ms-0.5 rtl:rotate-180 "
+            >
+              {tag}
+            </span>
+          ))
+        }
+      </p>
+    </div>
   </span>
 </article>
